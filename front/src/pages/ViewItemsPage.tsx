@@ -127,7 +127,7 @@ export default function ViewItemsPage() {
       </div>
 
       {selected && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-[#000000cc] bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-lg w-full">
             <h2 className="text-2xl font-bold mb-2">{selected.name}</h2>
             <p className="text-gray-600 mb-1">Type: {selected.type}</p>
