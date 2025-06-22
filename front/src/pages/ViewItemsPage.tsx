@@ -4,7 +4,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Snackbar from '../components/Snackbar';
 import { FaSpinner } from 'react-icons/fa';
 
-const API_URL = 'http://localhost:3002';
+const API_URL = 'https://amrr-fm6zhg1kb-abhishek-sharmas-projects-a9d0d168.vercel.app';
 
 interface Item {
   _id: string;
