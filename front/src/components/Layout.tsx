@@ -17,11 +17,11 @@ const Layout = ({ children }: LayoutProps) => {
           <div className="flex justify-between items-center h-16">
             
             {/* Navigation */}
-            <div className="hidden md:block">
-              <div className="flex items-baseline space-x-4">
+            <div className="flex-grow md:flex-grow-0">
+              <div className="flex items-baseline space-x-2 sm:space-x-4">
                 <Link
                   to="/"
-                  className={`px-3 py-2 rounded-md text-md font-medium transition-all duration-200 flex items-center space-x-2 ${
+                  className={`px-2 sm:px-3 py-2 rounded-md text-sm sm:text-md font-medium transition-all duration-200 flex items-center space-x-2 ${
                     isActive('/')
                       ? 'bg-indigo-100 text-indigo-700 shadow-sm'
                       : 'text-gray-600 hover:text-indigo-600 hover:bg-indigo-50'
@@ -31,7 +31,7 @@ const Layout = ({ children }: LayoutProps) => {
                 </Link>
                 <Link
                   to="/view-items"
-                  className={`px-3 py-2 rounded-md text-md font-medium transition-all duration-200 flex items-center space-x-2 ${
+                  className={`px-2 sm:px-3 py-2 rounded-md text-sm sm:text-md font-medium transition-all duration-200 flex items-center space-x-2 ${
                     isActive('/view-items')
                       ? 'bg-indigo-100 text-indigo-700 shadow-sm'
                       : 'text-gray-600 hover:text-indigo-600 hover:bg-indigo-50'
@@ -42,14 +42,6 @@ const Layout = ({ children }: LayoutProps) => {
               </div>
             </div>
 
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button className="text-gray-600 hover:text-indigo-600 focus:outline-none focus:text-indigo-600">
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
-            </div>
           </div>
         </div>
       </nav>

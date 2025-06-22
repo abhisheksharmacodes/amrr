@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Snackbar from '../components/Snackbar';
 
+const API_URL = 'https://amrr-five.vercel.app/api';
+
 async function uploadImage(file: File) {
   const formData = new FormData();
   formData.append('file', file);
@@ -63,7 +65,7 @@ export default function AddItemPage() {
       const coverUrl = await uploadImage(coverImg);
       const extraUrls = await Promise.all(extraImgs.map(img => uploadImage(img)));
 
-      const response = await fetch('http://localhost:3002/api/items', {
+      const response = await fetch(`${API_URL}/items`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

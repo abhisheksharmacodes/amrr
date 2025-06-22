@@ -40,7 +40,7 @@ transporter = nodemailer.createTransport({
   }
 });
 
-app.post('/items', async (req, res, next) => {
+app.post('/api/items', async (req, res, next) => {
   try {
     const { name, type, description, coverImage, additionalImages } = req.body;
     if (!name || !type || !description || !coverImage) {
@@ -60,7 +60,7 @@ app.post('/items', async (req, res, next) => {
   }
 });
 
-app.get('/items', async (req, res, next) => {
+app.get('/api/items', async (req, res, next) => {
   try {
     const items = await Item.find();
     res.json(items);
@@ -69,7 +69,7 @@ app.get('/items', async (req, res, next) => {
   }
 });
 
-app.post('/enquire', async (req, res, next) => {
+app.post('/api/enquire', async (req, res, next) => {
   try {
     const { item } = req.body;
     if (!item) return res.status(400).json({ message: 'Item information is missing' });

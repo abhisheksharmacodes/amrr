@@ -4,7 +4,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Snackbar from '../components/Snackbar';
 import { FaSpinner } from 'react-icons/fa';
 
-const API_URL = 'https://amrr-fm6zhg1kb-abhishek-sharmas-projects-a9d0d168.vercel.app';
+const API_URL = 'https://amrr-five.vercel.app/api';
 
 interface Item {
   _id: string;
@@ -28,7 +28,7 @@ export default function ViewItemsPage() {
     const fetchItems = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/api/items`, {
+        const response = await fetch(`${API_URL}/items`, {
           headers: {
             'Accept': 'application/json'
           }
@@ -60,7 +60,7 @@ export default function ViewItemsPage() {
   const handleEnquire = async (item: Item) => {
     setEnquireLoading(true);
     try {
-      const response = await fetch(`${API_URL}/api/enquire`, {
+      const response = await fetch(`${API_URL}/enquire`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
