@@ -1,5 +1,4 @@
 import { Link, useLocation } from 'react-router-dom';
-import { FaPlus, FaEye, FaShoppingBag } from 'react-icons/fa';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,9 +7,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
 
-  const isActive = (path: string) => {
-    return location.pathname === path;
-  };
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">

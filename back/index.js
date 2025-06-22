@@ -7,31 +7,21 @@ const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 
 const app = express();
-const port = 3002; // Using the new, working port
+const port = 3002;
 
-// --- Middlewares ---
-
-// 1. Universal request logger
 app.use((req, res, next) => {
-  console.log(`Request received: ${req.method} ${req.url}`);
+  console.log(`${req.method} ${req.url}`);
   next();
 });
 
-// 2. CORS handler
 app.use(cors());
-
-// 3. Body parser
 app.use(express.json());
-
 app.use('/public/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
-
-// --- MongoDB Connection ---
 mongoose.connect('mongodb+srv://geekysharma31:QvQjHmGntx7YPVFR@cluster0.66yf3.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
-// --- Mongoose Schema and Model ---
 const ItemSchema = new mongoose.Schema({
   name: String,
   type: String,
@@ -40,7 +30,6 @@ const ItemSchema = new mongoose.Schema({
   additionalImages: [String],
 });
 const Item = mongoose.model('Item', ItemSchema);
-
 
 let transporter;
 transporter = nodemailer.createTransport({
@@ -51,10 +40,6 @@ transporter = nodemailer.createTransport({
   }
 });
 
-
-// --- API Routes ---
-
-// Add a new item
 app.post('/api/items', async (req, res, next) => {
     try {
         const { name, type, description, coverImage, additionalImages } = req.body;
@@ -75,7 +60,6 @@ app.post('/api/items', async (req, res, next) => {
     }
 });
 
-// Get all items
 app.get('/api/items', async (req, res, next) => {
     try {
         const items = await Item.find();
@@ -85,7 +69,6 @@ app.get('/api/items', async (req, res, next) => {
     }
 });
 
-// Send an enquiry email
 app.post('/api/enquire', async (req, res, next) => {
     try {
         const { item } = req.body;
@@ -109,7 +92,6 @@ Best regards,
 Your Website
 `;
 
-        // HTML email body
         const emailHtml = `
           <h2 style="color:#2d3748;">New Item Enquiry</h2>
           <p><strong>Item Name:</strong> ${item.name}</p>
@@ -140,17 +122,12 @@ Your Website
     }
 });
 
-
-// --- Error Handling ---
-
-// Catch 404 for any other route and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// Unified error handling middleware
 app.use((err, req, res, next) => {
   console.error("--- ERROR ---", err.message);
   if (err instanceof multer.MulterError) {
@@ -159,9 +136,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).json({ message: err.message || 'Something went wrong' });
 });
 
-
-// --- Server Startup ---
 app.listen(port, () => {
-  console.log(`--- Full backend server is running on http://localhost:${port} ---`);
+  console.log(`Server running on http://localhost:${port}`);
 }); 
 
